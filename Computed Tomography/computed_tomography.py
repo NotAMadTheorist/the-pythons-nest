@@ -84,19 +84,11 @@ class beam:
 
 
 class beam_array_parallel:
-    def __init__(self, numberOfBeams, spacingAngle, beamWidth, centralAngle):
+    def __init__(self, numberOfBeams, spreadAngle, beamWidth, centralAngle):
         self.numberOfBeams = numberOfBeams
         self.beamWidth = beamWidth
         self.centralAngle = centralAngle
-
-        # distribute the translation angles in two cases: odd or even number of beams
-        translationAngles = []
-        n = numberOfBeams
-        q, r = n // 2, n % 2
-        if r == 1:
-            translationAngles = [k * spacingAngle for k in range(-q, q+1)]
-        else:
-            translationAngles = [(k-q+1/2)*spacingAngle for k in range(0, n)]
+        translationAngles = linspace(-spreadAngle/2, spreadAngle/2, numberOfBeams)
 
         # create the beam objects
         self.beamArray = [beam(centralAngle, T, 0, beamWidth) for T in translationAngles]
@@ -105,6 +97,23 @@ class beam_array_parallel:
         self.centralAngle = newAngle
         for bm in self.beamArray:
             bm.set_central_angle(newAngle)
+
+
+class beam_array_fan_mode:
+    def __init__(self, numberOfBeams, spreadAngle, beamWidth, centralAngle):
+        self.numberOfBeams = numberOfBeams
+        self.beamWidth = beamWidth
+        self.centralAngle = centralAngle
+        inclinationAngles = linspace(-spreadAngle / 2, spreadAngle / 2, numberOfBeams)
+
+        # create the beam objects
+        self.beamArray = [beam(centralAngle, 0, I, beamWidth) for I in inclinationAngles]
+
+    def set_central_angle(self, newAngle):
+        self.centralAngle = newAngle
+        for bm in self.beamArray:
+            bm.set_central_angle(newAngle)
+
 
 
 class pixel_grid:
@@ -353,10 +362,10 @@ class CAT_Scanner:
 
 
 initialImage = Image.open('CT_image_megaman.jpg')
-beamArray = beam_array_parallel(90, 1, 1, 0)
+beamArray = beam_array_parallel(90, 60, 1, 0)
 
 CT = CAT_Scanner(initialImage, beamArray, True)
 CT.scan(100)
 reconstructedImage = CT.reconstruct_image(6)
-reconstructedImage.save('CT_image_megaman_new.jpg')
+reconstructedImage.save('CT_image_megaman_new2.jpg')
 

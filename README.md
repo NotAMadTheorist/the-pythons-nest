@@ -7,7 +7,8 @@ I include in this repository a variety of light Python programs which I might ha
 These programs include:
 * Algorithms in performing statistical analysis procedures
 * Webpage Scraper which extracts data from a large table
-* A Computed Tomography Simulator
+* A Computed Tomography Simulator 
+
 Occasionally, I also add in files using other languages, especially in HTML and CSS, that may be worth keeping in this directory.
 
 ## Which modules do you use in your Python programs?

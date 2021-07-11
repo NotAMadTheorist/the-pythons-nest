@@ -1,6 +1,6 @@
 # The Python's Nest
 No, no, this is not a Python module or a video game. <br>
-This is simply a compilation of some of the many, many small projects I coded in Python since the year of 2018.
+This is simply a compilation of some of the many, many small programming projects I created since the year of 2018.
 
 ## What projects can be found here?
 I include in this repository a variety of light Python programs which I might have used one way or another out of my own interests or for learning something. <br>
@@ -8,8 +8,9 @@ These programs include:
 * Algorithms in performing statistical analysis procedures
 * Webpage Scraper which extracts data from a large table
 * A Computed Tomography Simulator
+Occasionally, I also add in files using other languages, especially in HTML and CSS, that may be worth keeping in this directory.
 
-## Which modules do you use in these programs?
+## Which modules do you use in your Python programs?
 ```python
 import math
   # How would I perform sines, cosines, complex numbers, floors and ceilings without this important module?

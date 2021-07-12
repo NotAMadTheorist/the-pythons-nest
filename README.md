@@ -4,7 +4,8 @@ This is simply a compilation of some of the many, many small programming project
 
 ## Projects ##
 - <a href="https://github.com/joshuainovero/the-pythons-nest/tree/Computed-Tomography">Computed Tomography</a>
-
+- <a href="https://github.com/joshuainovero/the-pythons-nest/tree/Temperature-Distribution">Temperature Distribution</a>
+- <a href="https://github.com/joshuainovero/the-pythons-nest/tree/Web-Replicas-in-HTML-and-CSS">Web Replicas using HTML and CSS</a>
 ## What projects can be found here?
 I include in this repository a variety of light Python programs which I might have used one way or another out of my own interests or for learning something. <br>
 These programs include:

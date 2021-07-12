@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>01_imaging_heart.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #8c8c8c; font-style: italic;}
+.s3 { color: #008080; font-weight: bold;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+01_imaging_heart.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">computed_tomography </span><span class="s0">import </span><span class="s1">*</span>
+<span class="s0">from </span><span class="s1">PIL </span><span class="s0">import </span><span class="s1">Image</span>
+
+<span class="s2"># open the image of a heart emoji (16 px x 15 px)</span>
+<span class="s1">myHeart = Image.open(</span><span class="s3">&quot;CT_images_before/heart.jpg&quot;</span><span class="s1">)</span>
+
+<span class="s2"># setup a parallel beam array with 30 beams, each with a width of 1 pixel, spread over 60 degrees around the center</span>
+<span class="s2"># of the image</span>
+<span class="s1">beamArray = beam_array_parallel(numberOfBeams=</span><span class="s4">60</span><span class="s1">,</span>
+                                <span class="s1">spreadAngle=</span><span class="s4">60</span><span class="s1">,</span>
+                                <span class="s1">beamWidth=</span><span class="s4">1</span><span class="s1">)</span>
+
+<span class="s2"># setup the CAT Scanner and connect it to the heart image and the beam array</span>
+<span class="s1">CT = CAT_Scanner(imageObj=myHeart,</span>
+                 <span class="s1">beamArray=beamArray,</span>
+                 <span class="s1">doConvertToGrayscale= </span><span class="s0">True</span><span class="s1">)</span>
+
+<span class="s2"># scan the heart image by rotating the beam array in 360 evenly spaced directions circling the image</span>
+<span class="s2"># since we have 30 beams, we will have a total of 30*360 = 10,800 beams to analyze</span>
+<span class="s1">CT.scan(numberOfDirections=</span><span class="s4">100</span><span class="s1">)</span>
+
+<span class="s2"># reconstruct a grayscale map of the image by applying an iterative projection algorithm 6 times</span>
+<span class="s2"># this is the step that will always take the longest time</span>
+<span class="s1">scannedHeart = CT.reconstruct_image(iterations=</span><span class="s4">6</span><span class="s1">)</span>
+
+<span class="s2"># the time required to reconstruct the image scales with the number of pixels in the image, the number of beams,</span>
+<span class="s2"># and the number of directions by which the image is scanned</span>
+
+<span class="s2"># save the image</span>
+<span class="s1">scannedHeart.save(</span><span class="s3">&quot;CT_images_after/heart_new.jpg&quot;</span><span class="s1">)</span></pre>
+</body>
+</html>

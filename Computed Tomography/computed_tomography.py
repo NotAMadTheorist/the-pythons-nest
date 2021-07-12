@@ -361,9 +361,9 @@ class CAT_Scanner:
         return reconstructedImage
 
 
-initialImage = Image.open('CT_image_megaman.jpg')
+initialImage = Image.open('samples/CT_images/mega_man.jpg')
 beamArray = beam_array_parallel(90, 60, 1, 0)
-
+#
 CT = CAT_Scanner(initialImage, beamArray, True)
 CT.scan(100)
 reconstructedImage = CT.reconstruct_image(6)

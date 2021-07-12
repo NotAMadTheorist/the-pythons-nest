@@ -2,7 +2,14 @@ from math import sqrt, sin, cos, tan, radians, floor
 from numpy import array, vstack
 
 class pixel_grid:
+    """A class representing the grid lines bounding each pixel in the image and the image itself."""
+
     def __init__(self, imageWidth:int, imageHeight:int):
+        """Create a pixel grid with a specified width (maximum X-coordinate) and height (maximum Y-coordinate).
+
+        The grid's origin (0, 0) is at the top-left corner of the image, and the X and Y directions of the grid
+        go in the left and down directions, respectively."""
+
         self.imageWidth = imageWidth
         self.imageHeight = imageHeight
         self.numberOfPixels = self.imageWidth * self.imageHeight
@@ -30,6 +37,12 @@ class pixel_grid:
         self.pixelsList = pixelsList
 
     def coefficient_list_center_line(self, beamObj):
+        """Returns a row array containing information on which pixels on the image are hit by the beam using the
+        center line method.
+
+        Each number in the array may be either 0, that is, the beam does not pass through the pixel or a nonzero
+        value up to sqrt(2) ~ 1.414, which tells how long is the segment of the line within the pixel."""
+
 
         # First find where the line passes through in the circle centered about the image's center with
         # a radius equal to half the length of the diagonal of the image
@@ -131,9 +144,14 @@ class pixel_grid:
         return coefficientList
 
     def coefficient_array_center_line(self, beamArrayObj):
-        # create a coefficient array where each row is simply the row of coefficients for each beam in the
-        # beam array
+        """Returns a two-dimensional array where each row, computed through the center line method, is the row of
+        coefficients for each beam in the beam array"""
+
         coefficientArray = vstack(tuple(self.coefficient_list_center_line(beamObj) for beamObj in
                                         beamArrayObj.beamArray))
 
         return coefficientArray
+
+    def __repr__(self):
+        return f"pixel_grid(imageWidth={self.imageWidth}," \
+               f"           imageHeight={self.imageHeight}"

@@ -2,7 +2,7 @@
 No, no, this is not a Python module or a video game. <br>
 This is simply a compilation of some of the many, many small programming projects I created since the year of 2018.
 
-##Projects##
+## Projects ##
 - <a href="https://github.com/joshuainovero/the-pythons-nest/tree/Computed-Tomography">Computed Tomography</a>
 
 ## What projects can be found here?

@@ -6,9 +6,9 @@ from PIL import Image
 # open the image of Mega Man's sprite (34 px x 40 px)
 yeBoi = Image.open("CT_images_before/mega_man.jpg")
 
-# setup a parallel beam array with 90 beams, each with a width of 1 pixel, spread over 30 degrees around the center
+# setup a parallel beam array with 30 beams, each with a width of 1 pixel, spread over 30 degrees around the center
 # of the image
-beamArray = beam_array_parallel(numberOfBeams=90,
+beamArray = beam_array_parallel(numberOfBeams=30,
                                 spreadAngle=30,
                                 beamWidth=1)
 
@@ -17,8 +17,8 @@ CT = CAT_Scanner(imageObj=yeBoi,
                  beamArray=beamArray,
                  doConvertToGrayscale=True)
 
-# scan the sprite by rotating the beam array in 100 evenly spaced directions circling the image
-CT.scan(100)
+# scan the sprite by rotating the beam array in 360 evenly spaced directions circling the image
+CT.scan(360)
 
 # reconstruct a grayscale map of the image by applying an iterative projection algorithm 6 times
 # this is the step that will always take the longest time

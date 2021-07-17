@@ -1,5 +1,6 @@
 from fast_fourier_transform import *
-
+from numpy import linspace
+import matplotlib.pyplot as plt
 from cmath import sin
 
 # if the inputs of the FFT are y-coordinates then the x-coordinates are simply equally spaced numbers on the
@@ -17,10 +18,10 @@ n = 2**k
 
 
 # function to evaluate
-f = lambda x: sin(2*pi*x*13) + sin(2*pi*x*25)
+Y = lambda x: sin(2*pi*x*13) + sin(2*pi*x*25)
 
 xVals = linspace(0, 1, n)
-yVals = [f(x) for x in xVals]
+yVals = [Y(x) for x in xVals]
 
 
 # show graph of original function
@@ -29,13 +30,13 @@ plt.show()
 
 
 # take the fourier transform of f(x)
-freqVals = [f for f in range(n)]
-fourierVals = FFT(yVals)
-fourierMags = [abs(F) for F in fourierVals]
+fVals = [f for f in range(n)]
+uVals = FFT(yVals)
+uMagnitudes = [abs(u) for u in uVals]
 
 
 # show the magnitudes of the fourier transform
-plt.plot(freqVals, fourierMags)
+plt.plot(fVals[:35], uMagnitudes[:35])
 plt.show()
 
 
@@ -47,7 +48,7 @@ plt.show()
 
 
 # take the inverse fourier transform to get back the original function
-yValsComplex = IFFT(fourierVals)
+yValsComplex = IFFT(uVals)
 newYVals = [y.real for y in yValsComplex]
 
 

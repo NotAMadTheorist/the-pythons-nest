@@ -19,6 +19,7 @@ print("Properties of the Fourier Transform \n")
 input("---press enter to continue---")
 print("\n \n")
 
+
 # ------------------------------------------------------------------------------------------------------------
 # 1. Linearity Property
 #   If Y3(x) = a*Y1(x) + b*Y2(x), where a and b are scalars, then U3(f) = a*U1(f) + b*U2(f).

@@ -32,7 +32,7 @@ plt.show()
 # take the fourier transform of f(x)
 fVals = [f for f in range(n)]
 uVals = FFT(yVals)
-uMagnitudes = [abs(u) for u in uVals]
+uMagnitudes = [abs(u) for u in uVals]   # what we are plotting here is also called a Power Spectrum
 
 
 # show the magnitudes of the fourier transform

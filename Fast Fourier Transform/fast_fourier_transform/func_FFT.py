@@ -67,31 +67,6 @@ def FFT(Y: list):
            It is also equivalent to converting coefficients of an (n-1)th degree polynomial to function
           values obtained by evaluating the polynomial on n complex numbers spaced around the unit circle in
           the complex plane.
-
-        ======
-
-        RANGE OF INPUTS AND OUTPUTS
-          If the inputs of the FFT are y-coordinates of n points in the physical xy or ty plane, then the
-          x-coordinates or times are n equally spaced numbers on the interval [0, s] inclusive of boundaries,
-          where s is any arbitrary scaling factor which may be set to describe a physical property.
-
-          The outputs of the FFT are the complex Fourier Transform values, represented by the
-          variable u, of frequency values f (which is in Hertz if x is in seconds) which are equally
-          spaced numbers on the interval [0, (2**n - 1)/s].
-
-        ===
-
-
-        CHANGING RANGES
-          Shrinking the range for the physical variable x or t expands the frequency range for f but also
-          expands the gap between two frequency values.
-
-          Expanding the range for the physical variable x or t shrinks the frequency ranges but
-          decreases the gap between two frequency values.
-
-          Increasing n to a higher power of 2 does not change the range of the physical variable,
-          but it does expand the range of the frequency values while preserving the gaps between
-          frequencies.
         """
 
     # check if the length of Y is a power of 2

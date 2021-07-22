@@ -60,30 +60,6 @@ def IFFT(U: list):
         It is also equivalent to converting the function values of a polynomial on n complex numbers spaced
         around the unit circle in the complex plane to coefficients of an (n-1)th degree polynomial which
         interpolates them.
-
-        ======
-
-        RANGE OF INPUTS AND OUTPUTS
-
-            If the inputs of the IFFT are the complex Fourier Transform values, represented by the variable u,
-            then the corresponding frequencies f (which is in Hertz if x is in seconds) of those values are
-            equally spaced numbers on the interval [0, p(2**n - 1)] inclusive of boundaries, where p is an
-            arbitrary scaling factor that may be calibrated to fit the situation.
-
-            The outputs of the IFFT are y-coordinates of n points in the physical xy or ty plane, whose
-            x-coordinates or times are n equally spaced numbers on the interval [0, 1/p].
-        ===
-
-
-        CHANGING RANGES
-            Shrinking the range for the frequency f expands the range for the physical variable x or t but also
-            expands the gap between two x values or time values.
-
-            Expanding the range for the frequency f shrinks the range of the physical variable x or t but
-            decreases the gap between two x values or time values.
-
-            Increasing n to a higher power of 2 expands the range of the frequency f, but does not change the
-            range of the physical variable x or t.
         """
 
     # check if the length of U is a power of 2

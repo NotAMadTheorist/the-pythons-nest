@@ -25,7 +25,9 @@ yVals = [Y(x) for x in xVals]
 
 
 # show graph of original function
-plt.plot(xVals, yVals)
+fig, axis = plt.subplots(1)
+axis.plot(xVals, yVals)
+axis.set(xlabel="x", ylabel="Y(x)")
 plt.show()
 
 
@@ -36,7 +38,10 @@ uMagnitudes = [abs(u) for u in uVals]   # what we are plotting here is also call
 
 
 # show the magnitudes of the fourier transform
-plt.plot(fVals[:35], uMagnitudes[:35])
+fig, axis = plt.subplots(1)
+axis.plot(fVals[:], uMagnitudes[:])
+axis.plot([128, 128], [0, max(uMagnitudes)], linestyle = 'dashed')
+axis.set(xlabel = "f", ylabel = "|U(f)|")
 plt.show()
 
 
@@ -53,7 +58,9 @@ newYVals = [y.real for y in yValsComplex]
 
 
 # show the reconstructed original function
-plt.plot(xVals, newYVals)
+fig, axis = plt.subplots(1)
+axis.plot(xVals, newYVals)
+axis.set(xlabel="x", ylabel="Y(x)")
 plt.show()
 
 # I should get back the original function

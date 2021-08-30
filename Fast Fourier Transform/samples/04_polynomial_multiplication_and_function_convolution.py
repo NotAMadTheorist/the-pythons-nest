@@ -109,7 +109,7 @@ n = 2**k
 functions = [(lambda x: exp(-2*x), lambda x: pulse_boxcar(x, 0.2, 0.2)),
              (lambda x: exp(-2*x), lambda x: pulse_triangle(x, 0.3, 0.4)),
              (lambda x: pulse_boxcar(x, 0.25, 0.5), lambda x: pulse_boxcar(x, 0, 0.1)),
-             (lambda x: pulse_boxcar(x, 0.25, 0.7), lambda x: exp(-64*(x-0.25)**2),),
+             (lambda x: pulse_boxcar(x, 0.25, 0.5), lambda x: exp(-90*(x-0.5)**2),),
              (lambda x: pulse_boxcar(x, 0.25, 0.5), lambda x: pulse_triangle(x, 0, 0.25)),
              (lambda x: waveform_square(x, 4, 0.3) + 0.3,  lambda x: exp(-8*x))]
 
@@ -119,19 +119,15 @@ for F1, F2 in functions:
     y2Range = [F2(x) for x in xRange]
     ycRange = function_convolution(y1Range, y2Range)   # note that this is by default scaled between -1 and 1
 
-    fig, axis = plt.subplots(1)
-    fig.suptitle("Functions Y1(x) and Y2(x)")
-    axis.plot(xRange, y1Range, 'tab:green')
-    axis.plot(xRange, y2Range, 'tab:orange')
-    axis.set(xlabel = 'x', ylabel = 'Y(x)')
-    plt.show()
-
-    fig, axis = plt.subplots(1)
-    fig.suptitle("Scaled Convolution Function Y1(x) ⨂ Y2(x)")
-    axis.plot(xRange, y1Range, 'tab:green', linestyle = 'dotted')
-    axis.plot(xRange, y2Range, 'tab:orange', linestyle = 'dotted')
-    axis.plot(xRange, ycRange, 'tab:blue')
-    axis.set(xlabel = 'x', ylabel = 'Y(x)')
+    fig, axis = plt.subplots(2)
+    fig.suptitle("Scaled Convolution Function (Y1 ⨂ Y2)(x)")
+    axis[0].plot(xRange, y1Range, 'tab:green')
+    axis[0].plot(xRange, y2Range, 'tab:orange')
+    axis[0].set(xlabel = 'x', ylabel = 'Y1(x), Y2(x)')
+    axis[1].plot(xRange, y1Range, 'tab:green', linestyle = 'dotted')
+    axis[1].plot(xRange, y2Range, 'tab:orange', linestyle = 'dotted')
+    axis[1].plot(xRange, ycRange, 'tab:blue')
+    axis[1].set(xlabel = 'x', ylabel = '(Y1 ⨂ Y2)')
     plt.show()
 
 # Notice that for the first pair of functions, the graph of the convolution has a similar shape to the falling

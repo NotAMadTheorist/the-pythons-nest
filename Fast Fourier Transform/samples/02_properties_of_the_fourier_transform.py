@@ -53,41 +53,27 @@ u3Abs = [abs(u3) for u3 in u3Range]
 uLinearRange = [a*u1 + b*u2 for u1, u2 in zip(u1Range, u2Range)]
 uLinearAbs = [abs(uL) for uL in uLinearRange]
 
-# setup pyplot
-fig, ax = plt.subplots(figsize=(8, 6))
-
-# plot the two component physical functions Y1(x) and Y2(x)
-ax.plot(xRange, y1Range)
-ax.plot(xRange, y2Range)
-ax.set_xlabel('physical variable [x]')
-ax.set_ylabel('physical magnitudes [y = Y1(x), Y2(x)]')
-plt.show()
-
-# plot the combined physical function Y3(x)
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.plot(xRange, y3Range)
-ax.set_xlabel('physical variable [x]')
-ax.set_ylabel('physical magnitude [y = Y3(x)]')
+# plot the two component physical functions Y1(x) and Y2(x) and the combined function Y(x)
+fig, axis = plt.subplots(1)
+fig.suptitle('Components Y1(x) and Y2(x) and their combined function Y(x)')
+axis.plot(xRange, y1Range, label = 'Y1(x)')
+axis.plot(xRange, y2Range, label = 'Y2(x)')
+axis.plot(xRange, y3Range, label = 'Y(x) = 3*Y1(x) + 5*Y2(x)')
+axis.set(xlabel = 'x', ylabel = 'Y1(x), Y2(x), and combined Y(x)')
+axis.legend()
 plt.show()
 
 # limit the frequency range
 fMax = 20
 
 # plot the fourier transforms U1(f) and U2(f) of the two component physical functions
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.plot(fRange[:fMax], u1Abs[:fMax])
-ax.plot(fRange[:fMax], u2Abs[:fMax])
-ax.set_xlabel('frequency [f]')
-ax.set_ylabel('frequency magnitudes [u = U1(f), U2(f)]')
-plt.show()
-
-# plot the fourier transform U3(f) of the combined physical function and the combination of U1(f) and U2(f)
-# you should see that the graphs overlap which shows the equality
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.plot(fRange[:fMax], u3Abs[:fMax])
-ax.plot(fRange[:fMax], uLinearAbs[:fMax])
-ax.set_xlabel('frequency [f]')
-ax.set_ylabel('frequency magnitude [u = U3(f)]')
+fig, axis = plt.subplots(1)
+fig.suptitle('Components U1(f) and U2(f) and their combined function U(f)')
+axis.plot(fRange[:fMax], u1Abs[:fMax], label = 'U1(f)')
+axis.plot(fRange[:fMax], u2Abs[:fMax], label = 'U2(f)')
+axis.plot(fRange[:fMax], u3Abs[:fMax], label = 'U(f) = 3*U1(f) + 5*U2(f)')
+axis.set(xlabel = 'f', ylabel = 'U1(f), U2(f), and combined U(f)')
+axis.legend()
 plt.show()
 
 
@@ -101,7 +87,7 @@ print('2. Time Scaling Property:'
 input("")
 
 a = 3
-Y = lambda x: cos(8*pi*x)*exp(-2*x)
+Y = lambda x: cos(20*pi*x)*exp(-2*x)
 Yscaled = lambda x: Y(a*x)
 
 xRange = list(linspace(0, 1, n))
@@ -116,25 +102,26 @@ uScaledRange = FFT(yScaledRange)
 uScaledAbs = [abs(u) for u in uScaledRange]
 
 
-# setup pyplot
-fig, ax = plt.subplots(figsize=(8, 6))
-
 # plot the original function and the scaled function
-ax.plot(xRange, yRange)
-ax.plot(xRange, yScaledRange)
-ax.set_xlabel('physical variable [x]')
-ax.set_ylabel('physical magnitudes [y = Y(x), Y(a*x)]')
+fig, axis = plt.subplots(1)
+axis.plot(xRange, yRange, label = 'Y1(x)')
+axis.plot(xRange, yScaledRange, label = 'Y2(x) = Y1(3x)')
+axis.set_xlabel('x')
+axis.set_ylabel('Y1(x), Y2(x)')
+axis.legend()
 plt.show()
 
 # limit the frequency range
-fMax = 20
+fMax = 80
 
 # plot the fourier transforms of the original function and of the scaled function
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.plot(fRange[:fMax], uAbs[:fMax])
-ax.plot(fRange[:fMax], uScaledAbs[:fMax])
-ax.set_xlabel('frequency [f]')
-ax.set_ylabel('frequency magnitudes [u = U(f), 1/|a|*U(f/a)]')
+fig, axis = plt.subplots(1)
+axis.plot(fRange[:fMax], uAbs[:fMax],   label = 'U1(f)')
+axis.plot(fRange[:fMax], uScaledAbs[:fMax],  label = 'U2(f) = U1(f/3)/3')
+axis.set_xlabel('f')
+axis.set_ylabel('U1(f),  U2(f)')
+axis.legend()
+print(uScaledAbs[30] / uAbs[10])
 plt.show()
 
 # You can see that the peak of the orange graph (which is the FT of Y(a*x)) has a lower peak that is roughly

@@ -1,6 +1,8 @@
 from fast_fourier_transform import *
 from numpy import linspace
 import matplotlib.pyplot as plt
+from cmath import phase
+from math import degrees
 
 
 # Parameters
@@ -35,6 +37,7 @@ for waveName, waveFunc in waves:
     fRange = list(range(n))
     uRange = FFT(yRange)
     uAbs = [abs(u) for u in uRange]     # this is data for what is called a Power Spectrum
+    uPhase = [degrees(phase(u)) for u in uRange]
 
     # find where there are spikes in the magnitudes of the Fourier Transforms and print at which frequency do they
     # occur and what fractions are their heights relative to the highest spike

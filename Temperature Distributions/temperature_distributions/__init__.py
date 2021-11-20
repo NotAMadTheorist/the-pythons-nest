@@ -1,0 +1,4 @@
+from temperature_distributions.cls_temp_distribution_rectangle import *
+from temperature_distributions.cls_gradient import *
+from temperature_distributions.func_array_to_color_array import *
+from temperature_distributions.var_gradients import *
